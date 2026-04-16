@@ -2,10 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Support Widget Bridge</title>
+    <script src="https://sky.blackbaudcdn.net/static/sky-addin-client/1/sky-addin-client.umd.min.js"></script>
+    
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: transparent; }
+        .help-button { background-color: #00608d; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    </style>
 </head>
 <body>
 
+    <button class="help-button" id="help-btn">Submit Help Request</button>
+
+    <script type="text/javascript" src="https://s3.amazonaws.com/assets.freshservice.com/widget/freshwidget.js"></script>
+   <script>
+	window.fwSettings={
+	'widget_id':150000005106
+	};
+	!function(){if("function"!=typeof window.FreshworksWidget){var n=function(){n.q.push(arguments)};n.q=[],window.FreshworksWidget=n}}() 
+</script>
+<script type='text/javascript' src='https://widget.freshworks.com/widgets/150000005106.js' async defer></script>
+    <script>
+        // Initialize the Add-in Handshake
+        const client = new window.BlackbaudSkyAddinClient.AddinClient({
+            callbacks: {
+                init: (args) => {
+                    args.ready({
+                        showTitle: false,
+                        title: "Support Desk"
+                    });
+                }
+            }
+        });
+
+        // Optional: Trigger the widget automatically when the button is clicked
+        document.getElementById('help-btn').onclick = function() {
+            FreshWidget.show(); 
+        };
+    </script>
 </body>
 </html>
